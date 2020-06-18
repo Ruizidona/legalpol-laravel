@@ -1,0 +1,15 @@
+body{
+	background-image: url(../assets/img/justice-1509436_1920);
+
+}
+h1{
+	color:white;
+}
+body .col{
+	background-color: white;
+	 opacity: 0;
+}
+#CalendarioWeb{
+	background-color: white !important;
+}
+
