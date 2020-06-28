@@ -30,7 +30,7 @@
         <input class="form-control" type="text" data-checkout="cardholderName" placeholder="Nombre">
     </div>
     <div class="col-5">
-        <input class="form-control" type="email" data-checkout="cardholderEmail" placeholder="email@example.com" name="email">
+        <input class="form-control" type="email" data-checkout="cardholderEmail" placeholder="email@example.com" name="email" value="{{ auth()->user()->email }}">
     </div>
 </div>
 

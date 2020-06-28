@@ -19,8 +19,8 @@ return [
         'api_key' => env('CURRENCY_CONVERSION_API_KEY'),
     ],
     'mailgun' => [
-        'domain' => env('sandboxb80d12032c914943839f610a732faf61.mailgun.org'),
-        'secret' => env('314a819af73aa4953622ab53e5f5a359-e5e67e3e-6345cc49'),
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAIL_PASSWORD'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 

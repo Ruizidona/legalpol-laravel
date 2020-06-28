@@ -55,12 +55,27 @@ class AbogadosController extends Controller
     public function show()
     {
         //
-
-        $data['abogados'] = DB::select("SELECT * FROM users WHERE rol = 2");
+        $data['abogados'] = DB::table('users')->where('rol', 2)->get();                    
+        // $data['abogados'] = DB::select("SELECT * FROM users WHERE rol = 2");
 
         //return response()->json($data['abogados']);
-        return $data['abogados'];
+
+
+        // return view('abogados.lista');
+         return $data['abogados'];
     }
+    // public function show()
+    // {
+    //     //
+
+    //     $data['abogados'] = DB::select("SELECT * FROM users WHERE rol = 2");
+
+    //     //return response()->json($data['abogados']);
+        
+
+    //     // return view('abogados.lista');
+    //      return $data['abogados'];
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -104,6 +119,24 @@ class AbogadosController extends Controller
         ]);
    }
 
-   
+    public function lista($search = null){ //$search = null
+
+     // $user = User::where('rol' = '2' and  'name', 'LIKE', '%'.$search.'%')
+         if (!empty($search)){
+               $data = DB::table('users')->where('rol', 2)
+                                         ->where('name', 'LIKE', '%'.$search.'%')
+                                         ->orwhere('specialty', 'LIKE', '%'.$search.'%')
+                                         ->orwhere('surname', 'LIKE', '%'.$search.'%');
+      //   $data['abogados'] = DB::select("SELECT * FROM users WHERE rol = 2");
+         }else{
+             $data = DB::table('users')->where('rol', 2);  
+
+        }
+        $data = $data->get(); 
+    return view('abogados.lista', ['data' => $data]);
+   //  return view('abogados.lista');
+}
+
+
 }
 

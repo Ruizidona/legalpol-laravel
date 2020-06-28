@@ -83,8 +83,7 @@ class MercadoPagoService
     ;
             return redirect()
                 // ->route('home')
-                  ->route('eventos.get', ['idabogado' => $result])  //REDIRECCIONAR A HACER EVENTOz 
-
+                ->route('eventos.get', ['idabogado' => $result])  //REDIRECCIONAR A HACER EVENTO 
                 ->withSuccess(['payment' => "Gracias, {$name}. Recibimos tu {$originalAmount}{$originalCurrency} pago ({$amount}{$currency})."]);
         }
 

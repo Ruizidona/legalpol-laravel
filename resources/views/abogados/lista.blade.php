@@ -3,18 +3,37 @@
 
 @section('content')
 
-<?php
-use App\Http\Controllers\AbogadosController;
-$control = new AbogadosController();
-$data = $control->show();
+<script type="text/javascript">
+	var url = window.location.origin;
+	window.addEventListener("load", function(){
+// BUSCADOR
+	$('#buscador').submit(function(e){
+		$(this).attr('action',url+'/abogados/'+$('#buscador #search').val());
+	});
+});
+</script>
 
-?>
 
-              <section id="lawyers" class="section-60 section-lg-100">
+	
+	
+	
+			
+        <section id="lawyers" class="section-10">
         <div class="container">
           <hr>
           <h2 class="text-center">Abogados</h2><hr>
-          <div  class="row row-40 align-items-sm-end"><!--lista de abogados -->
+        <div  class="row row-40 align-items-sm-end"><!--lista de abogados -->
+		
+		<div class="container">	
+			<form id="buscador" method="GET" action="{{ route('lista') }}" >
+				<div class="input-group">
+					<input type="text" class="form-control col-md-3 offset-md-9" id="search">
+					<span class="input-group-prepend">
+						<input type="submit" class="btn-primary" value="Buscar">
+					</span>
+				</div>
+			</form>
+		</div>
 
 
            
@@ -26,7 +45,7 @@ $data = $control->show();
                         $foto = 0;
                         //$foto = $abo->id;
                       ?>
-                  <figure class="thumbnail-image"><img src="images/perfil/{{$foto}}.jpg" alt="" width="246" height="300"/>
+                  <figure class="thumbnail-image"><img src="../images/perfil/{{$foto}}.jpg" alt="" width="246" height="300"/>
                   </figure>
                   <div class="thumbnail-inner">
                      <div class="link-group"><span class="  "></span><a class="link-white" href="{{ route('profile', ['id' => $abo->id]) }}">PERFIL</a></div>
@@ -52,5 +71,7 @@ $data = $control->show();
         </div>
 
       </section>
+		
+
 
 @endsection

@@ -24,7 +24,7 @@ Auth::routes();
 //Route::resource('DB', 'EventosController')->middleware('auth');
 
 //El middleware(auth) evita entrar sin estar logeado
-Route::get('/home/{id?}', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home/{id?}', 'HomeController@index')->name('home')->middleware('verified');
 
 
 Route::get('consulta', function () {
@@ -41,25 +41,27 @@ Route::get('consulta', function () {
 
 //Route::get('eventos/{evento}', 'EventosController@show')->middleware('auth')->name('eventos.abogados');
 
-Route::get('/eventos', 'EventosController@index')->middleware('auth');
+Auth::routes(['verify' => true]);
 
-Route::post('/eventos/store', 'EventosController@store')->middleware('auth')->name('eventos.store');
-Route::patch('/eventos/{evento}/update', 'EventosController@update')->middleware('auth')->name('eventos.update');
-Route::delete('/eventos/{evento}/delete', 'EventosController@destroy')->middleware('auth')->name('eventos.destroy');
+Route::get('/eventos', 'EventosController@index')->middleware('verified');
 
-
-
-Route::get('/eventos/show', 'EventosController@show')->middleware('auth')->name('eventos.abogados');
-
-Route::get('/eventos/showClientes', 'EventosController@showClientes')->middleware('auth')->name('eventos.showCliente');
+Route::post('/eventos/store', 'EventosController@store')->middleware('verified')->name('eventos.store');
+Route::patch('/eventos/{evento}/update', 'EventosController@update')->middleware('verified')->name('eventos.update');
+Route::delete('/eventos/{evento}/delete', 'EventosController@destroy')->middleware('verified')->name('eventos.destroy');
 
 
 
-Route::get('/eventos/showAll', 'EventosController@showAll')->middleware('auth')->name('eventos.showAll');
+Route::get('/eventos/show', 'EventosController@show')->middleware('verified')->name('eventos.abogados');
+
+Route::get('/eventos/showClientes', 'EventosController@showClientes')->middleware('verified')->name('eventos.showCliente');
 
 
-Route::get('/eventos/{idabogado?}', 'EventosController@get')->middleware('auth')->name('eventos.get');
-Route::get('/eventos', 'EventosController@get')->middleware('auth')->name('eventos.get2');
+
+Route::get('/eventos/showAll', 'EventosController@showAll')->middleware('verified')->name('eventos.showAll');
+
+
+Route::get('/eventos/{idabogado?}', 'EventosController@get')->middleware('verified')->name('eventos.get');
+Route::get('/eventos', 'EventosController@get')->middleware('verified')->name('eventos.get2');
 
 
 
@@ -104,6 +106,10 @@ Route::get('/payments/cancelled', 'PaymentController@cancelled')->name('cancelle
 // Route::get('/home/{idabogado?}', 'EventosController@get')->middleware('auth')->name('home.get');
 
 
-Route::get('/abogados', function () {
-    return view('abogados.lista');
-})->name("lista");
+// Route::get('/abogados', function () {
+//     
+// })->name("lista");
+
+Route::get('/abogados/{search?}', 'AbogadosController@lista')->name("lista");
+
+

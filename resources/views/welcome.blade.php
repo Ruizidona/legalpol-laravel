@@ -8,6 +8,7 @@ use App\Http\Controllers\AbogadosController;
 $control = new AbogadosController();
 $data = $control->show();
 
+
 ?>
             <section>
         <div class="swiper-container swiper-slider swiper-variant-1 bg-black" data-loop="false" data-autoplay="5500" data-simulate-touch="true">
@@ -71,9 +72,9 @@ $data = $control->show();
           <h2 class="text-center">Selecciona un abogado</h2><hr>
           <div  class="row row-40 align-items-sm-end"><!--lista de abogados -->
 
-
-           
-           @foreach($data as $abo)
+        <?php $count = 0; ?>
+         @foreach($data as $abo)
+         <?php if($count == 3) break; ?>
           
            <div class="col-sm-6 col-md-4 col-lg-3">
               <div class="thumbnail-variant-2-wrap">
@@ -102,6 +103,7 @@ $data = $control->show();
                 </div>
               </div>
             </div>
+            <?php $count++; ?>
           @endforeach
            <div class="col-sm-6 col-md-12 col-lg-3 text-center">
               <div class="block-wrap-1">

@@ -14,7 +14,7 @@ class CurrenciesTableSeeder extends Seeder
     {
         $currencies = [
             'ars',
-            'usd',
+            
         ];
 
         foreach ($currencies as $currency) {
